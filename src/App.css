@@ -1,0 +1,239 @@
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+  overflow: auto;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
+  width: 100vw;
+  height: 100vh;
+  background: white;
+
+  --app-primary: #f59331;
+  --primary-color: #f59331;
+}
+
+.bg-primary {
+  background-color: var(--app-primary) !important;
+}
+
+.p-chips .p-chips-multiple-container {
+  width: 100% !important;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.p-component {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+}
+
+.p-datatable .p-datatable-header {
+  background: white !important;
+  border: none !important;
+  border-width: 0 !important;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  background: #f1f1f1 !important;
+}
+
+.p-datatable.p-datatable-striped .p-datatable-tbody>tr.p-row-odd {
+  background: #f5f3f3 !important;
+}
+
+.p-menuitem {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.p-menu .p-menuitem-link .p-menuitem-icon {
+  font-size: 15px;
+}
+
+.p-menuitem-link {
+  font-size: 15px;
+}
+
+.p-datepicker .p-datepicker-header .p-datepicker-prev,
+.p-datepicker .p-datepicker-header .p-datepicker-next {
+  /* Add your custom styles here */
+  background-color: #d3d3d383 !important;
+  color: #0c0404 !important;
+  font-size: 16px !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  /* ... */
+}
+
+.p-datepicker-prev>svg {
+  display: none;
+  /* fill: #0c0404 !important; */
+}
+
+.p-datepicker-next>svg {
+  display: none;
+  /* fill: #0c0404 !important; */
+}
+
+.p-datepicker-prev::before {
+  content: "\f053";
+  /* Unicode for the star icon */
+  font-family: "Font Awesome 5 Free";
+  /* Specify the Font Awesome font family */
+  font-weight: 900;
+  color: #495057;
+  /* Specify the font weight for the solid style icons */
+}
+
+.p-datepicker-next::before {
+  content: "\f054";
+  /* Unicode for the star icon */
+  font-family: "Font Awesome 5 Free";
+  /* Specify the Font Awesome font family */
+  font-weight: 900;
+  color: #495057;
+  /* Specify the font weight for the solid style icons */
+}
+
+.p-inputtext,
+.p-dropdown,
+.p-multiselect {
+  background: #efefef !important;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+}
+
+.p-dropdown-trigger {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.p-multiselect-trigger {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.p-dropdown .p-dropdown-label.p-placeholder {
+  text-align: left !important;
+  color: #6c757dbf !important;
+}
+
+.p-multiselect .p-multiselect-label.p-placeholder {
+  text-align: left !important;
+  color: #6c757dbf !important;
+}
+
+.p-buttonset .p-button {
+  width: 50% !important;
+  color: #6c757dbf !important;
+}
+
+.p-selectbutton .p-button.p-highlight {
+  background: var(--primary-color) !important;
+  color: white !important;
+}
+
+.p-dropdown .p-dropdown-clear-icon {
+  right: 4rem !important;
+}
+
+.p-dropdown.p-dropdown-clearable .p-dropdown-label {
+  text-align: left !important;
+}
+
+.p-multiselect .p-multiselect-clear-icon {
+  right: 4rem !important;
+}
+
+.p-multiselect.p-multiselect-clearable .p-multiselect-label {
+  text-align: left !important;
+}
+
+/* .p-avatar.p-avatar-xl {
+  width: 5rem !important;
+  height: 5rem !important;
+  border-radius: 6rem !important;
+}
+
+.p-tabview .p-tabview-nav {
+  border-width: 4 !important;
+  padding-bottom: 1rem !important;
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: var(--app-primary) !important;
+  border-color: var(--app-primary) !important;
+  color: #ffffff !important;
+  border-radius: 6rem !important;
+  padding: 1.2rem !important;
+
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  border: none !important;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+  display: none !important;
+} */
+.p-tabview .p-tabview-panels {
+  padding: 1rem !important;
+}
+
+.dashboard-tab {
+  width: 100% !important;
+}
+
+.dashboard-button-set>.p-button.p-component {
+  border: none !important;
+  width: 20% !important;
+}
+
+.required-field::after {
+  content: "*";
+  color: red;
+}
+
+.p-paginator .p-dropdown .p-dropdown-label {
+  padding-right: 1rem !important;
+}
+
+.p-autocomplete .p-autocomplete-multiple-container {
+  width: 100% !important;
+}
