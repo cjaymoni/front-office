@@ -57,7 +57,7 @@ const bgImg = "/motor.svg";
 export const FrontOfficeLayout = () => {
   const visitsMenu = [
     {
-      href: "/front-office/visit-entry",
+      href: "/visit-entry",
       name: "Visit Entries",
       icon: (
         <svg
@@ -71,7 +71,7 @@ export const FrontOfficeLayout = () => {
       ),
     },
     {
-      href: "/front-office/visit-category",
+      href: "/visit-category",
       name: "Visit Category",
       icon: (
         <svg
@@ -91,7 +91,7 @@ export const FrontOfficeLayout = () => {
       ),
     },
     {
-      href: "/front-office/visit-status",
+      href: "/visit-status",
       name: "Visit Status",
       icon: (
         <svg
@@ -105,7 +105,7 @@ export const FrontOfficeLayout = () => {
       ),
     },
     {
-      href: "/front-office/expected-visitors",
+      href: "/expected-visitors",
       name: "Expected Visitors",
       icon: (
         <svg
@@ -121,12 +121,12 @@ export const FrontOfficeLayout = () => {
   ];
   const dispatchMenu = [
     {
-      href: "/front-office/incoming-dispatch",
+      href: "/incoming-dispatch",
       name: "Incoming Dispatches",
       icon: <img src={bgImg} className="w-5 h-5 lg:w-6 lg:h-6 fill-current" />,
     },
     {
-      href: "/front-office/outgoing-dispatch",
+      href: "/outgoing-dispatch",
       name: "Outgoing Dispatches",
       icon: (
         <svg
@@ -142,7 +142,7 @@ export const FrontOfficeLayout = () => {
   ];
   const navigation = [
     {
-      href: "/front-office/dashboard",
+      href: "/dashboard",
       name: "Dashboard",
       icon: (
         <svg
@@ -156,7 +156,7 @@ export const FrontOfficeLayout = () => {
       ),
     },
     {
-      href: "/front-office/visits",
+      href: "/visits",
       name: "Visits",
       icon: (
         <svg
@@ -173,7 +173,7 @@ export const FrontOfficeLayout = () => {
     },
 
     {
-      href: "/front-office/office-areas",
+      href: "/office-areas",
       name: "Office Areas",
       icon: (
         <svg
@@ -194,7 +194,7 @@ export const FrontOfficeLayout = () => {
     },
 
     {
-      href: "/front-office/incoming-dispatches",
+      href: "/incoming-dispatches",
       name: "Dispatches",
       icon: (
         <svg

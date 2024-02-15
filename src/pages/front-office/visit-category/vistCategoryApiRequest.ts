@@ -25,7 +25,7 @@ export const addNewVisitCategoryRequest = (visitCategoryData: any) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(function () {
-          window.location.assign("/front-office/visit-category");
+          window.location.assign("/visit-category");
         });
       }
       return response.data;

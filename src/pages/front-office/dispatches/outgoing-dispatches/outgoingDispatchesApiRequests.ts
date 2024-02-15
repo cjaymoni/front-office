@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import { axiosInstance } from "../../../../utils/api-util";
 import { IStaff } from "../../../staff/staffApiRequests";
+import { IDispatchStatus } from "../incoming-dispatches/incomingDispatchesApiRequests";
 
 const outgoingDispatchEndpoint = "frontoffice/dispatches/outgoings";
 
@@ -26,7 +27,7 @@ export const addNewOutgoingDispatchRequest = (outgoingDispatchData: any) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(function () {
-          window.location.assign("/front-office/outgoing-dispatch");
+          window.location.assign("/outgoing-dispatch");
         });
       }
       return response.data;
@@ -110,4 +111,11 @@ export interface IOutgoingDispatch {
   document_name: string;
 
   id?: string;
+  courier_name?: string;
+  courier_phone?: string;
+  status: IDispatchStatus;
+
+  courier: string;
+  time: string;
+  remarks: string;
 }

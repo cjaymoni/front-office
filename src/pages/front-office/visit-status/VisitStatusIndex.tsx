@@ -31,10 +31,10 @@ export const VisitStatusIndex = () => {
 
   const actionBodyTemplate = (rowData: any) => {
     const goToEditPage = () => {
-      navigate(`/front-office/visit-status/${selectedVisitStatus.id}/edit`);
+      navigate(`/visit-status/${selectedVisitStatus.id}/edit`);
     };
     const goToViewPage = () => {
-      navigate(`/front-office/visit-status/${selectedVisitStatus.id}`);
+      navigate(`/visit-status/${selectedVisitStatus.id}`);
     };
 
     const deleteVisitStatus = () => {
@@ -99,7 +99,7 @@ export const VisitStatusIndex = () => {
   };
   const columns = [
     { field: "status", header: "Status " },
-    { field: "description", header: "Description" },
+    { header: "Description", body: descriptionBodyTemplate },
     { header: "Actions", body: actionBodyTemplate },
   ];
 
@@ -109,7 +109,7 @@ export const VisitStatusIndex = () => {
         <span className="text-4xl text-gray-500 font-semibold">
           Visit Statuses
         </span>
-        <Link to="/front-office/visit-status/add">
+        <Link to="/visit-status/add">
           <Button label="Add Visit Status" icon="pi pi-plus" outlined />
         </Link>
       </div>
@@ -117,7 +117,17 @@ export const VisitStatusIndex = () => {
         columns={columns}
         data={visitStatusList}
         globalFilterFields={["status", "description"]}
+        exportedFileName="visit-status"
       />
     </div>
+  );
+};
+
+const descriptionBodyTemplate = (rowData) => {
+  const stringWithoutTags = rowData.description.replace(/<[^>]*>/g, "");
+  return (
+    <React.Fragment>
+      <span>{stringWithoutTags}</span>
+    </React.Fragment>
   );
 };

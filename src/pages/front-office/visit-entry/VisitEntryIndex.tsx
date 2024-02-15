@@ -20,7 +20,26 @@ export const VisitEntryIndex = () => {
   const buttonEl = useRef(null);
   const [selectedVisitEntry, setSelectedVisitEntry] = useState<IVisitEntry>();
 
+  const visitEn = [
+    {
+      id: 1,
+      visitor_name: "John Doe",
+      visitor_email: "johndoe@mail.com",
+      visitor_phone: "0934854932",
+      visit_date: "2021-09-09",
+      visit_purpose: "Meeting",
+    },
+    {
+      id: 2,
+      visitor_name: "Jane Doe",
+      visitor_email: "janedoe@mail.com",
+      visitor_phone: "0934832932",
+      visit_date: "2021-09-08",
+      visit_purpose: "Meeting",
+    },
+  ];
   useEffect(() => {
+    // setVisitEntryList(visitEn);
     fetchVisitEntryRequest().then((response) => {
       response.length > 0 ? setVisitEntryList(response) : setVisitEntryList([]);
     });
@@ -28,10 +47,10 @@ export const VisitEntryIndex = () => {
 
   const actionBodyTemplate = (rowData: any) => {
     const goToEditPage = () => {
-      navigate(`/front-office/visit-entry/${selectedVisitEntry.id}/edit`);
+      navigate(`/visit-entry/${selectedVisitEntry.id}/edit`);
     };
     const goToViewPage = () => {
-      navigate(`/front-office/visit-entry/${selectedVisitEntry.id}`);
+      navigate(`/visit-entry/${selectedVisitEntry.id}`);
     };
 
     const deleteVisitEntry = () => {
@@ -106,7 +125,7 @@ export const VisitEntryIndex = () => {
         <span className="text-4xl text-gray-500 font-semibold">
           Visit Entries
         </span>
-        <Link to="/front-office/visit-entry/add">
+        <Link to="/visit-entry/add">
           <Button label="Add Visit Entry" icon="pi pi-plus" outlined />
         </Link>
       </div>
@@ -120,6 +139,7 @@ export const VisitEntryIndex = () => {
           "visit_date",
           "visit_purpose",
         ]}
+        exportedFileName="visit-entries"
       />
     </div>
   );

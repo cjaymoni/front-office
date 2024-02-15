@@ -6,6 +6,9 @@ import {
   IOfficeAreas,
   getOfficeAreasByIdRequest,
 } from "./officeAreasApiRequest";
+import { Divider } from "primereact/divider";
+import { TabView, TabPanel } from "primereact/tabview";
+import { CommentsTabComponent } from "../../../components/tab-components/CommentsTabComponent";
 
 export const OfficeAreasDetails = () => {
   const navigate = useNavigate();
@@ -23,30 +26,10 @@ export const OfficeAreasDetails = () => {
 
   return (
     <div className="w-full p-4">
-      <div className="w-full py-4 px-8 bg-white shadow-md rounded-lg my-8">
-        <div>
-          <h2 className=" text-gray-500  text-left text-4xl font-semibold mb-16">
-            Office Area Details
-          </h2>
-          <ul className="mt-5 text-gray-600 text-left">
-            <li className="flex flex-row items-left py-3 px-2 flex-wrap bg-gray-300">
-              <div className="flex text-[#808080] font-medium md:w-1/4 w-full">
-                Office Area Name
-              </div>
-              <div className="flex md:w-3/4 text-black font-medium">
-                {officeAreaDetails?.name}
-              </div>
-            </li>
-            <li className="flex flex-row items-left py-3 px-2 flex-wrap ">
-              <div className="flex md:w-1/4 w-full text-[#808080] font-medium">
-                Office Area description
-              </div>
-              <div className="flex md:w-3/4 text-black font-medium">
-                {officeAreaDetails?.description}
-              </div>
-            </li>
-          </ul>
-        </div>
+      <div className="flex justify-between p-2">
+        <h2 className=" text-gray-500  text-left text-4xl font-semibold mb-16">
+          Office Area Details
+        </h2>
         <div className="flex justify-end">
           <Button
             label="Edit"
@@ -66,6 +49,45 @@ export const OfficeAreasDetails = () => {
             onClick={() => navigate(-1)}
           />
         </div>
+      </div>
+
+      <div className="w-full">
+        <ul className="grid grid-cols-3 text-lg">
+          <li className="flex flex-col items-left py-3 px-2 flex-wrap ">
+            <div className="flex text-[#808080] font-medium w-full">
+              Office Area Name
+            </div>
+            <div className="flex  text-black font-medium">
+              {" "}
+              {officeAreaDetails?.name}
+            </div>
+          </li>
+          <li className="flex flex-col items-left py-3 px-2 flex-wrap ">
+            <div className="flex text-[#808080] font-medium w-full">
+              Office Area description
+            </div>
+            <div className="flex  text-black font-medium">
+              {officeAreaDetails?.description}
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <Divider
+        style={{
+          height: "0.1rem",
+          marginBottom: 0,
+          backgroundColor: "#808080",
+          opacity: 0.2,
+        }}
+      />
+
+      <div>
+        <TabView>
+          <TabPanel header="Comments" leftIcon="pi pi-comment mr-2">
+            <CommentsTabComponent />
+          </TabPanel>
+        </TabView>
       </div>
     </div>
   );

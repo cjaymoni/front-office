@@ -12,12 +12,20 @@ import { InputTextarea } from "primereact/inputtextarea";
 
 import { InputNumber } from "primereact/inputnumber";
 import {
+  IDispatchStatus,
   IIncomingDispatch,
   addNewIncomingDispatchRequest,
   getIncomingDispatchByIdRequest,
   updateIncomingDispatchRequest,
 } from "./incomingDispatchesApiRequests";
-import { ErrorMessagBox, ErrorMessageBox } from "../../../../utils/utils";
+import {
+  ErrorMessagBox,
+  ErrorMessageBox,
+  createOptionsFromEnum,
+} from "../../../../utils/utils";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Editor } from "primereact/editor";
+import { Dropdown } from "primereact/dropdown";
 
 const scrollToElement = (ref: any) => {
   if (ref && ref.current) {
@@ -44,6 +52,9 @@ const SignupSchema = Yup.object().shape({
     .max(200, "Too Long!")
     .required("courier phone is Required"),
   sender_name: Yup.string().min(2, "Too Short!").max(200, "Too Long!"),
+  status: Yup.mixed(),
+  time: Yup.mixed(),
+  remarks: Yup.string(),
 });
 
 export const IncomingDispatchForm = () => {
@@ -199,7 +210,7 @@ export const IncomingDispatchForm = () => {
           </div>
 
           {/* description */}
-          <div className="flex flex-col mb-4">
+          {/* <div className="flex flex-col mb-4">
             <label
               htmlFor="description"
               className="font-medium text-left mb-3 text-gray-500 required-field"
@@ -221,7 +232,7 @@ export const IncomingDispatchForm = () => {
               />
             </div>
             {getFormErrorMessage("description")}
-          </div>
+          </div> */}
 
           {/* sender_name */}
           <div className="flex flex-col mb-4">
@@ -299,6 +310,109 @@ export const IncomingDispatchForm = () => {
               />
             </div>
             {getFormErrorMessage("courier_phone")}
+          </div>
+
+          {/* status */}
+          <div className="flex flex-col mb-4">
+            <label
+              htmlFor="status"
+              className="font-medium text-left mb-3 text-gray-500"
+            >
+              Status
+            </label>
+            <div className="flex flex-col">
+              <Dropdown
+                value={
+                  formikForm.values.status
+                    ? new Date(formikForm.values.status)
+                    : null
+                }
+                className={classNames({
+                  "p-invalid": isFormFieldInvalid("status"),
+                })}
+                onChange={(e) => {
+                  formikForm.setFieldValue("status", e.target.value);
+                }}
+                options={createOptionsFromEnum(IDispatchStatus)}
+                optionLabel="label"
+                showClear
+                placeholder="Select a status"
+              />
+            </div>
+            {getFormErrorMessage("status")}
+          </div>
+
+          {/* description */}
+          <div className="flex flex-col mb-4">
+            <Accordion activeIndex={0} className="w-full ">
+              <AccordionTab header="Document Description">
+                <Editor
+                  placeholder={"Enter document description .."}
+                  value={formikForm.values.description}
+                  onTextChange={(e) =>
+                    formikForm.setFieldValue("description", e.htmlValue)
+                  }
+                  style={{ height: "320px" }}
+                  modules={{
+                    toolbar: [
+                      [{ header: "1" }, { header: "2" }, { font: [] }],
+                      [{ size: [] }],
+                      ["bold", "italic", "underline", "strike", "blockquote"],
+                      [
+                        { list: "ordered" },
+                        { list: "bullet" },
+                        { indent: "-1" },
+                        { indent: "+1" },
+                      ],
+                      ["link", "image", "video"],
+                      ["clean"],
+                    ],
+                    clipboard: {
+                      // toggle to add extra line breaks when pasting HTML:
+                      matchVisual: false,
+                    },
+                  }}
+                />
+              </AccordionTab>
+            </Accordion>
+
+            {getFormErrorMessage("description")}
+          </div>
+          {/* remarks */}
+          <div className="flex flex-col mb-4">
+            <Accordion activeIndex={0} className="w-full ">
+              <AccordionTab header="Remarks">
+                <Editor
+                  placeholder={"Enter  remarks .."}
+                  value={formikForm.values.remarks}
+                  onTextChange={(e) =>
+                    formikForm.setFieldValue("remarks", e.htmlValue)
+                  }
+                  style={{ height: "320px" }}
+                  modules={{
+                    toolbar: [
+                      [{ header: "1" }, { header: "2" }, { font: [] }],
+                      [{ size: [] }],
+                      ["bold", "italic", "underline", "strike", "blockquote"],
+                      [
+                        { list: "ordered" },
+                        { list: "bullet" },
+                        { indent: "-1" },
+                        { indent: "+1" },
+                      ],
+                      ["link", "image", "video"],
+                      ["clean"],
+                    ],
+                    clipboard: {
+                      // toggle to add extra line breaks when pasting HTML:
+                      matchVisual: false,
+                    },
+                  }}
+                />
+              </AccordionTab>
+            </Accordion>
+
+            {getFormErrorMessage("remarks")}
           </div>
         </div>
 

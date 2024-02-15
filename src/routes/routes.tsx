@@ -1,5 +1,3 @@
-import { LeavesIndex } from "../pages/leaves/LeavesIndex";
-import { LeaveForm } from "../pages/leaves/LeaveForm";
 import { StaffIndex } from "../pages/staff/StaffIndex";
 import { StaffForm1 } from "../pages/staff/StaffForm1";
 import { StaffDetails } from "../pages/staff/StaffDetails";
@@ -41,9 +39,6 @@ import { OutgoingDispatchesIndex } from "../pages/front-office/dispatches/outgoi
 import { OutgoingDispatchDetails } from "../pages/front-office/dispatches/outgoing-dispatches/OutgoingDispatchesDetails";
 import { OutgoingDispatchForm } from "../pages/front-office/dispatches/outgoing-dispatches/OutgoingDispatchesForm";
 import { DashboardView } from "../pages/dashboard/DashboardView";
-import { StaffAppraisalsIndex } from "../pages/appraisal/staff-appraissal/StaffAppraisalIndex";
-import { StaffAppraisalDetails } from "../pages/appraisal/staff-appraissal/StaffAppraisalDetails";
-import { StaffAppraisalForm } from "../pages/appraisal/staff-appraissal/StaffAppraisalForm";
 import { StaffTargetsIndex } from "../pages/appraisal/staff-target/StaffTargetIndex";
 import { StaffTargetDetails } from "../pages/appraisal/staff-target/StaffTargetDetails";
 import { StaffTargetForm } from "../pages/appraisal/staff-target/StaffTargetForm";
@@ -68,18 +63,14 @@ import { ConsultationsForm } from "../pages/crm/consultations/ConsultationsForm"
 import { ActionsIndex } from "../pages/crm/actions/ActionsIndex";
 import { ActionDetails } from "../pages/crm/actions/ActionsDetails";
 import { ActionsForm } from "../pages/crm/actions/ActionsForm";
-import { MattersIndex } from "../pages/matters/matter/MatterIndex";
-import { MattersForm } from "../pages/matters/matter/MatterForm";
-import { MatterDetails } from "../pages/matters/matter/MatterDetails";
-import { JudgesIndex } from "../pages/matters/judges/JudgesIndex";
-import { JudgeDetails } from "../pages/matters/judges/JudgesDetails";
-import { JudgesForm } from "../pages/matters/judges/JudgesForm";
-import { MattersCategoryIndex } from "../pages/matters/matters-category/MattersCategoryIndex";
-import { MattersCategoryDetails } from "../pages/matters/matters-category/MattersCategoryDetails";
-import { MattersCategoryForm } from "../pages/matters/matters-category/MattersCategoryForm";
-import { MattersDocumentIndex } from "../pages/matters/matters-documents/MattersDocumentsIndex";
-import { MattersDocumentsDetails } from "../pages/matters/matters-documents/MattersDocumentsDetails";
-import { MattersDocumentForm } from "../pages/matters/matters-documents/MattersDocumentsForm";
+
+import { KeywordsIndex } from "../pages/keywords/KeywordsIndex";
+import { RolesIndex } from "../pages/roles/RolesIndex";
+import { PermissionsIndex } from "../pages/permissions/PermissionsIndex";
+import { UsersIndex } from "../pages/users/UsersIndex";
+import { TagsIndex } from "../pages/tags/TagsIndex";
+import { CategoriesIndex } from "../pages/categories/CategoriesIndex";
+import { UserProfile } from "../pages/user-profile/UserProfile";
 
 export const routes = [
   {
@@ -91,28 +82,7 @@ export const routes = [
   },
 
   //leaves
-  {
-    path: "/leaves",
-    layout: LayoutWithSubMenu,
-    element: <LeavesIndex />,
 
-    children: [
-      {
-        path: "/:leaveId",
-        element: <LeaveForm />,
-      },
-      {
-        path: "/:leaveId/edit-leave",
-        element: <LeaveForm />,
-      },
-      {
-        path: "/add-leave",
-        layout: LayoutWithSubMenu,
-
-        element: <LeaveForm />,
-      },
-    ],
-  },
   //staff
   {
     path: "/staff",
@@ -139,29 +109,6 @@ export const routes = [
   },
 
   //staff- appraisal
-  {
-    path: "/staff-appraisals",
-    layout: LayoutWithSubMenu,
-    element: <StaffAppraisalsIndex />,
-
-    children: [
-      {
-        path: "/:staffAppraisalId",
-        element: <StaffAppraisalDetails />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/:staffAppraisalId/edit",
-        element: <StaffAppraisalForm />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/add",
-        layout: LayoutWithSubMenu,
-        element: <StaffAppraisalForm />,
-      },
-    ],
-  },
 
   //staff-targets
   {
@@ -336,6 +283,49 @@ export const routes = [
     ],
   },
 
+  //practice areas
+  {
+    path: "/categories",
+    layout: LayoutWithSubMenu,
+    element: <CategoriesIndex />,
+  },
+
+  //practice areas
+  {
+    path: "/tags",
+    layout: LayoutWithSubMenu,
+    element: <TagsIndex />,
+  },
+  //users
+  {
+    path: "/users",
+    layout: LayoutWithSubMenu,
+    element: <UsersIndex />,
+  },
+  //permissions
+  {
+    path: "/permissions",
+    layout: LayoutWithSubMenu,
+    element: <PermissionsIndex />,
+  },
+  //roles
+  {
+    path: "/roles",
+    layout: LayoutWithSubMenu,
+    element: <RolesIndex />,
+  },
+  //keywords
+  {
+    path: "/keywords",
+    layout: LayoutWithSubMenu,
+    element: <KeywordsIndex />,
+  },
+  //user-profile
+  {
+    path: "/user-profile",
+    layout: LayoutWithSubMenu,
+    element: <UserProfile />,
+  },
   //designations
   {
     path: "/designations",
@@ -363,7 +353,7 @@ export const routes = [
 
   //visits
   {
-    path: "/front-office/visits",
+    path: "/visits",
     layout: LayoutWithSubMenu,
     element: <VisitsIndex />,
 
@@ -388,7 +378,7 @@ export const routes = [
 
   //visit category
   {
-    path: "/front-office/visit-category",
+    path: "/visit-category",
     layout: LayoutWithSubMenu,
     element: <VisitCategoryIndex />,
 
@@ -413,7 +403,7 @@ export const routes = [
 
   //office areas
   {
-    path: "/front-office/office-areas",
+    path: "/office-areas",
     layout: LayoutWithSubMenu,
     element: <OfficeAreasIndex />,
 
@@ -438,7 +428,7 @@ export const routes = [
 
   //visit status
   {
-    path: "/front-office/visit-status",
+    path: "/visit-status",
     layout: LayoutWithSubMenu,
     element: <VisitStatusIndex />,
 
@@ -463,7 +453,7 @@ export const routes = [
 
   //expected visitors
   {
-    path: "/front-office/expected-visitors",
+    path: "/expected-visitors",
     layout: LayoutWithSubMenu,
     element: <ExpectedVisitorsIndex />,
 
@@ -487,7 +477,7 @@ export const routes = [
   },
   //visit entry
   {
-    path: "/front-office/visit-entry",
+    path: "/visit-entry",
     layout: LayoutWithSubMenu,
     element: <VisitEntryIndex />,
 
@@ -512,7 +502,7 @@ export const routes = [
 
   //incoming dispatch
   {
-    path: "/front-office/incoming-dispatch",
+    path: "/incoming-dispatch",
     layout: LayoutWithSubMenu,
     element: <IncomingDispatchesIndex />,
 
@@ -536,7 +526,7 @@ export const routes = [
   },
   //outgoing dispatch
   {
-    path: "/front-office/outgoing-dispatch",
+    path: "/outgoing-dispatch",
     layout: LayoutWithSubMenu,
     element: <OutgoingDispatchesIndex />,
 
@@ -561,7 +551,7 @@ export const routes = [
 
   //crm leads
   {
-    path: "/crm/leads",
+    path: "/leads",
     layout: LayoutWithSubMenu,
     element: <LeadsIndex />,
 
@@ -586,7 +576,7 @@ export const routes = [
 
   //crm clients
   {
-    path: "/crm/clients",
+    path: "/clients",
     layout: LayoutWithSubMenu,
     element: <ClientsIndex />,
 
@@ -611,7 +601,7 @@ export const routes = [
 
   //crm consultations
   {
-    path: "/crm/consultations",
+    path: "/consultations",
     layout: LayoutWithSubMenu,
     element: <ConsultationsIndex />,
 
@@ -636,7 +626,7 @@ export const routes = [
 
   //crm actions
   {
-    path: "/crm/actions",
+    path: "/actions",
     layout: LayoutWithSubMenu,
     element: <ActionsIndex />,
 
@@ -654,106 +644,6 @@ export const routes = [
       {
         path: "/add",
         element: <ActionsForm />,
-        layout: LayoutWithSubMenu,
-      },
-    ],
-  },
-
-  //matters
-  {
-    path: "/matters/matter",
-    layout: LayoutWithSubMenu,
-    element: <MattersIndex />,
-
-    children: [
-      {
-        path: "/:matterId",
-        element: <MatterDetails />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/:matterId/edit",
-        element: <MattersForm />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/add",
-        element: <MattersForm />,
-        layout: LayoutWithSubMenu,
-      },
-    ],
-  },
-
-  //matters/judges
-  {
-    path: "/matters/judges",
-    layout: LayoutWithSubMenu,
-    element: <JudgesIndex />,
-
-    children: [
-      {
-        path: "/:judgeId",
-        element: <JudgeDetails />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/:judgeId/edit",
-        element: <JudgesForm />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/add",
-        element: <JudgesForm />,
-        layout: LayoutWithSubMenu,
-      },
-    ],
-  },
-
-  //matters/categories
-  {
-    path: "/matters/categories",
-    layout: LayoutWithSubMenu,
-    element: <MattersCategoryIndex />,
-
-    children: [
-      {
-        path: "/:mattersCategoryId",
-        element: <MattersCategoryDetails />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/:mattersCategoryId/edit",
-        element: <MattersCategoryForm />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/add",
-        element: <MattersCategoryForm />,
-        layout: LayoutWithSubMenu,
-      },
-    ],
-  },
-
-  //matters/documents
-  {
-    path: "/matters/documents",
-    layout: LayoutWithSubMenu,
-    element: <MattersDocumentIndex />,
-
-    children: [
-      {
-        path: "/:mattersDocumentId",
-        element: <MattersDocumentsDetails />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/:mattersDocumentId/edit",
-        element: <MattersDocumentForm />,
-        layout: LayoutWithSubMenu,
-      },
-      {
-        path: "/add",
-        element: <MattersDocumentForm />,
         layout: LayoutWithSubMenu,
       },
     ],

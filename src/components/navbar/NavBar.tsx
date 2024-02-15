@@ -1,14 +1,27 @@
-export const NavBar = () => {
+import { Badge } from "primereact/badge";
+import { Button } from "primereact/button";
+import { Divider } from "primereact/divider";
+import { OverlayPanel } from "primereact/overlaypanel";
+import { useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+export function NavBar({ showSideBar, setShowSidebar }) {
+  const op = useRef(null);
+  const po = useRef(null);
+
+  const navigate = useNavigate();
   return (
     <div className="bg-white border-b flex justify-between h-auto p-3">
-      <div className="sm:hidden block">
+      <div className="lg:hidden block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth="1.5"
           stroke="currentColor"
-          className="w-11 h-11"
+          className="w-10 h-10 cursor-pointer"
+          style={{ color: "#f59331" }}
+          onClick={() => setShowSidebar(!showSideBar)}
         >
           <path
             strokeLinecap="round"
@@ -40,21 +53,70 @@ export const NavBar = () => {
           />
         </form>
       </div>
+
       <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-12 h-12"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
+        <div className="flex flex-row gap-6">
+          {" "}
+          <i
+            className="pi pi-bell p-overlay-badge text-black cursor-pointer mt-2"
+            style={{ fontSize: "2rem" }}
+            onClick={(e) => op.current.toggle(e)}
+          >
+            <Badge value="2"></Badge>
+          </i>
+          <i
+            onClick={(e) => po.current.toggle(e)}
+            className="fa fa-circle-user text-[#f59331] cursor-pointer"
+            style={{ fontSize: "2.5rem" }}
+          ></i>{" "}
+          <OverlayPanel
+            ref={op}
+            className="h-2/4 sm:w-1/4 w-full absolute left-0"
+          >
+            <NotificationItem />
+            <Divider className="bg-gray-300 h-[1px] w-full" />
+            <NotificationItem />
+            <Divider className="bg-gray-300 h-[1px] w-full" />
+          </OverlayPanel>
+          <OverlayPanel ref={po} className="h-1/4  w-[15rem] absolute left-0">
+            <Link to="/user-profile" className="text-black cursor-pointer">
+              <i
+                className="fa fa-circle-user mr-2 text-[#f59331] cursor-pointer"
+                style={{ fontSize: "2.5rem" }}
+              ></i>
+              User Profile
+            </Link>{" "}
+            <Divider className="bg-gray-300 h-[1px] w-full" />
+            <span
+              onClick={() => {
+                localStorage.clear();
+                navigate("/login");
+              }}
+              className="cursor-pointer hover:text-blue-300"
+            >
+              <i
+                className="fa fa-sign-out mr-2 text-[#f59331] cursor-pointer"
+                style={{ fontSize: "2.5rem" }}
+              ></i>
+              Log Out
+            </span>
+          </OverlayPanel>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const NotificationItem = (notification) => {
+  return (
+    <div className="flex flex-row gap-3  p-3 cursor-pointer">
+      <i className="pi pi-bell text-[#f59331]" style={{ fontSize: "2.3rem" }} />
+      <div className="flex flex-col -mb-5">
+        <span className="italic text-gray-400">Task Update</span>
+        <span className="font-bold text-lg">Task assigned to you</span>
+        <span className="text-slate-500">Aye yo, do this thing yea</span>
+        <span className="text-gray-400 italic">2 hours ago</span>
+        <span className="cursor-pointer text-[#f59331]">Mark as Read</span>
       </div>
     </div>
   );

@@ -30,14 +30,10 @@ export const IncomingDispatchesIndex = () => {
 
   const actionBodyTemplate = (rowData: any) => {
     const goToEditPage = () => {
-      navigate(
-        `/front-office/incoming-dispatch/${selectedIncomingDispatch.id}/edit`
-      );
+      navigate(`/incoming-dispatch/${selectedIncomingDispatch.id}/edit`);
     };
     const goToViewPage = () => {
-      navigate(
-        `/front-office/incoming-dispatch/${selectedIncomingDispatch.id}`
-      );
+      navigate(`/incoming-dispatch/${selectedIncomingDispatch.id}`);
     };
 
     const deleteIncomingDispatch = () => {
@@ -111,7 +107,7 @@ export const IncomingDispatchesIndex = () => {
         <span className="text-4xl text-gray-500 font-semibold">
           Incoming Dispatch
         </span>
-        <Link to="/front-office/incoming-dispatch/add">
+        <Link to="/incoming-dispatch/add">
           <Button label="Add Incoming Dispatch" icon="pi pi-plus" outlined />
         </Link>
       </div>
@@ -125,6 +121,7 @@ export const IncomingDispatchesIndex = () => {
           "receipt_acknowledged",
           "description",
         ]}
+        exportedFileName="incoming-dispatches"
       />
     </div>
   );

@@ -25,7 +25,7 @@ export const addNewVisitStatusRequest = (visitStatusData: any) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(function () {
-          window.location.assign("/front-office/visit-status");
+          window.location.assign("/visit-status");
         });
       }
       return response.data;

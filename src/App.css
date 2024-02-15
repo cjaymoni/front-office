@@ -185,6 +185,19 @@
   text-align: left !important;
 }
 
+.p-tabview .p-tabview-nav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.p-tabview .p-tabview-nav li {
+  margin-bottom: 2px !important;
+}
+
+.p-tabview .p-tabview-nav .p-tabview-ink-bar {
+  display: none !important;
+}
+
 /* .p-avatar.p-avatar-xl {
   width: 5rem !important;
   height: 5rem !important;
@@ -236,4 +249,135 @@
 
 .p-autocomplete .p-autocomplete-multiple-container {
   width: 100% !important;
+}
+
+.p-editor-container .p-editor-toolbar {
+  display: none;
+}
+
+input::file-selector-button {
+  font-weight: bold;
+  background: var(--app-primary) !important;
+  color: black !important;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px;
+}
+
+.p-breadcrumb {
+  border: none !important;
+  background: none !important;
+}
+
+.p-inputtext {
+  width: 100% !important;
+}
+
+/* media query for small screens */
+@media only screen and (max-width : 649px) {
+
+  .p-sidebar-right .p-sidebar {
+    width: 100% !important;
+  }
+
+  .p-dialog {
+    width: 90% !important;
+  }
+
+  .video-player {
+    width: 100% !important;
+  }
+}
+
+
+.p-buttonset .p-button {
+  margin: 0.5rem !important;
+  border: 1px solid !important;
+  width: unset !important;
+  border-radius: 0.5rem !important;
+}
+
+.p-avatar .p-avatar-icon {
+  font-size: 4rem !important;
+}
+
+.profile-tag {
+  background: #22c55e4d !important;
+  color: #008000b5 !important;
+  font-size: .80rem !important;
+  font-weight: 700 !important;
+  padding: 0.3rem 0.5rem !important;
+  border-radius: 6px !important;
+}
+
+.profile-tag-blue {
+  background: #2281c54d !important;
+  color: #001580b5 !important;
+  font-size: .80rem !important;
+  font-weight: 700 !important;
+  padding: 0.3rem 0.5rem !important;
+  border-radius: 6px !important;
+}
+
+.p-timeline-event-opposite {
+  display: none !important;
+}
+
+.priority-badge {
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+
+}
+
+.status-badge {
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+
+}
+
+.priority-badge.priority-high {
+  background-color: #ffcdd2;
+  color: #c63737;
+}
+
+.priority-badge.priority-medium {
+  background-color: #feedaf;
+  color: #8a5340;
+}
+
+.priority-badge.priority-low {
+  background-color: #c8e6c9;
+  color: #256029;
+}
+
+.status-badge.status-overdue {
+  background-color: #ffcdd2;
+  color: #c63737;
+}
+
+.status-badge.status-pending {
+  background-color: #afc3fe;
+  color: #40508a;
+}
+
+.status-badge.status-completed {
+  background-color: #c8e6c9;
+  color: #256029;
+}
+
+.status-badge.status-in_progress {
+  background-color: #feedaf;
+  color: #8a5340;
+}
+
+.p-icon .p-breadcrumb-chevron {
+  color: black !important;
 }

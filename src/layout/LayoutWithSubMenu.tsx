@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import React from "react";
+import { NavBar } from "../components/navbar/NavBar";
 
 interface ISidebarItem {
   href: string;
@@ -391,7 +392,7 @@ export const LayoutWithSubMenu = () => {
   ];
   const visitsMenu = [
     {
-      href: "/front-office/visit-entry",
+      href: "visit-entry",
       name: "Visit Entries",
       icon: (
         <svg
@@ -405,7 +406,7 @@ export const LayoutWithSubMenu = () => {
       ),
     },
     {
-      href: "/front-office/visit-category",
+      href: "visit-category",
       name: "Visit Category",
       icon: (
         <svg
@@ -425,7 +426,7 @@ export const LayoutWithSubMenu = () => {
       ),
     },
     {
-      href: "/front-office/visit-status",
+      href: "visit-status",
       name: "Visit Status",
       icon: (
         <svg
@@ -439,7 +440,7 @@ export const LayoutWithSubMenu = () => {
       ),
     },
     {
-      href: "/front-office/expected-visitors",
+      href: "expected-visitors",
       name: "Expected Visitors",
       icon: (
         <svg
@@ -455,7 +456,7 @@ export const LayoutWithSubMenu = () => {
   ];
   const dispatchMenu = [
     {
-      href: "/front-office/incoming-dispatch",
+      href: "incoming-dispatch",
       name: "Incoming Dispatches",
       icon: (
         <svg
@@ -475,7 +476,7 @@ export const LayoutWithSubMenu = () => {
       ),
     },
     {
-      href: "/front-office/outgoing-dispatch",
+      href: "outgoing-dispatch",
       name: "Outgoing Dispatches",
       icon: (
         <svg
@@ -499,7 +500,7 @@ export const LayoutWithSubMenu = () => {
   const frontOfficeMenu = [
     //office areas
     {
-      href: "/front-office/office-areas",
+      href: "office-areas",
       name: "Office Areas",
       icon: (
         <svg
@@ -520,7 +521,7 @@ export const LayoutWithSubMenu = () => {
     },
 
     {
-      href: "/front-office/visits",
+      href: "visits",
       name: "Visits",
       icon: (
         <svg
@@ -536,7 +537,7 @@ export const LayoutWithSubMenu = () => {
       menuItems: visitsMenu,
     },
     {
-      href: "/front-office/incoming-dispatches",
+      href: "incoming-dispatches",
       name: "Dispatches",
       icon: (
         <svg
@@ -855,8 +856,9 @@ export const LayoutWithSubMenu = () => {
         </div>
       </div>
       <div className="lg:w-4/5 w-full flex-1 overflow-y-auto">
+        <NavBar setShowSidebar={setShowSidebar} showSideBar={showSideBar} />
         {/* navbar */}
-        <div className="bg-white border-b flex justify-between h-auto p-3">
+        {/* <div className="bg-white border-b flex justify-between h-auto p-3">
           <div className="lg:hidden block">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -915,7 +917,7 @@ export const LayoutWithSubMenu = () => {
               />
             </svg>
           </div>
-        </div>
+        </div> */}
         <div className="mt-auto relative">
           <Outlet></Outlet>
         </div>

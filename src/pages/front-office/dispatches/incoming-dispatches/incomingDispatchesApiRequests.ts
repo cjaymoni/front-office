@@ -25,7 +25,7 @@ export const addNewIncomingDispatchRequest = (incomingDispatchData: any) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(function () {
-          window.location.assign("/front-office/incoming-dispatch");
+          window.location.assign("/incoming-dispatch");
         });
       }
       return response.data;
@@ -106,4 +106,14 @@ export interface IIncomingDispatch {
   courier_name?: string;
   courier_phone?: string;
   id?: string;
+  status: IDispatchStatus;
+  time: string;
+  remarks: string;
+}
+
+export enum IDispatchStatus {
+  Lodged = "lodged",
+  "Deposited for dispatch" = "deposited for dispatch",
+  Delivered = "delivered",
+  Returned = "returned",
 }

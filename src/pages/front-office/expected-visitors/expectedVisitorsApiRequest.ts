@@ -26,7 +26,7 @@ export const addNewExpectedVisitorsRequest = (expectedVisitorsData: any) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(function () {
-          window.location.assign("/front-office/expected-visitors");
+          window.location.assign("/expected-visitors");
         });
       }
       return response.data;

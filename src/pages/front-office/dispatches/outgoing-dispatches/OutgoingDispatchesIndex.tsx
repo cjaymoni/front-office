@@ -31,14 +31,10 @@ export const OutgoingDispatchesIndex = () => {
 
   const actionBodyTemplate = (rowData: any) => {
     const goToEditPage = () => {
-      navigate(
-        `/front-office/outgoing-dispatch/${selectedOutgoingDispatch.id}/edit`
-      );
+      navigate(`/outgoing-dispatch/${selectedOutgoingDispatch.id}/edit`);
     };
     const goToViewPage = () => {
-      navigate(
-        `/front-office/outgoing-dispatch/${selectedOutgoingDispatch.id}`
-      );
+      navigate(`/outgoing-dispatch/${selectedOutgoingDispatch.id}`);
     };
 
     const deleteOutgoingDispatch = () => {
@@ -97,6 +93,26 @@ export const OutgoingDispatchesIndex = () => {
       </React.Fragment>
     );
   };
+  const dummyList = [
+    {
+      id: 1,
+      serial_no: "UQWr2341",
+      document_title: "Document 1",
+      reference_number: "RF9541",
+      date: "2021-09-30",
+      created_at: "2021-09-30T13:13:09.000000Z",
+      updated_at: "2021-09-30T13:13:09.000000Z",
+    },
+    {
+      id: 2,
+      serial_no: "SN9r2341",
+      document_title: "Document 2",
+      reference_number: "RF989541",
+      date: "2021-09-30",
+      created_at: "2021-09-30T13:13:09.000000Z",
+      updated_at: "2021-09-30T13:13:09.000000Z",
+    },
+  ];
   const columns = [
     { field: "serial_no", header: "Serial number" },
 
@@ -114,19 +130,20 @@ export const OutgoingDispatchesIndex = () => {
         <span className="text-4xl text-gray-500 font-semibold">
           Outgoing Dispatch
         </span>
-        <Link to="/front-office/outgoing-dispatch/add">
+        <Link to="/outgoing-dispatch/add">
           <Button label="Add Outgoing Dispatch" icon="pi pi-plus" outlined />
         </Link>
       </div>
       <ListTable
         columns={columns}
-        data={outgoingDispatchList}
+        data={dummyList}
         globalFilterFields={[
           "document_title",
           "serial_no",
           "reference_number",
           "date",
         ]}
+        exportedFileName="outgoing-dispatches"
       />
     </div>
   );

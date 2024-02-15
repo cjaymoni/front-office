@@ -8,7 +8,11 @@ import { classNames } from "primereact/utils";
 import * as Yup from "yup";
 import { InputText } from "primereact/inputtext";
 
-import { ErrorMessagBox, ErrorMessageBox } from "../../../../utils/utils";
+import {
+  ErrorMessagBox,
+  ErrorMessageBox,
+  createOptionsFromEnum,
+} from "../../../../utils/utils";
 import {
   IOutgoingDispatch,
   addNewOutgoingDispatchRequest,
@@ -16,6 +20,10 @@ import {
   updateOutgoingDispatchRequest,
 } from "./outgoingDispatchesApiRequests";
 import { Calendar } from "primereact/calendar";
+import { Dropdown } from "primereact/dropdown";
+import { IDispatchStatus } from "../incoming-dispatches/incomingDispatchesApiRequests";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Editor } from "primereact/editor";
 
 const scrollToElement = (ref: any) => {
   if (ref && ref.current) {
@@ -37,6 +45,17 @@ const SignupSchema = Yup.object().shape({
     .max(200, "Too Long!")
     .required("Serial number is Required"),
   date: Yup.date().required("date is required"),
+  status: Yup.mixed(),
+  time: Yup.mixed(),
+  remarks: Yup.string(),
+  courier_name: Yup.string()
+    .min(2, "Too Short!")
+    .max(200, "Too Long!")
+    .required("courier name is Required"),
+  courier_phone: Yup.string()
+    .min(2, "Too Short!")
+    .max(200, "Too Long!")
+    .required("courier phone is Required"),
 });
 
 export const OutgoingDispatchForm = () => {
@@ -271,6 +290,124 @@ export const OutgoingDispatchForm = () => {
               />
             </div>
             {getFormErrorMessage("date")}
+          </div>
+          {/* courier_name */}
+          <div className="flex flex-col mb-4">
+            <label
+              htmlFor="courier_name"
+              className="font-medium text-left mb-3 text-gray-500 required-field"
+            >
+              Courier name
+            </label>
+            <div className="flex flex-col">
+              <InputText
+                type="text"
+                name="courier_name"
+                placeholder="Enter courier name"
+                value={formikForm.values.courier_name}
+                onChange={(e) => {
+                  formikForm.setFieldValue("courier_name", e.target.value);
+                }}
+                className={classNames(
+                  { "p-invalid": isFormFieldInvalid("courier_name") },
+                  "w-full p-1 ml-3 text-gray-500 outline-none"
+                )}
+              />
+            </div>
+            {getFormErrorMessage("courier_name")}
+          </div>
+
+          {/* courier_phone */}
+          <div className="flex flex-col mb-4">
+            <label
+              htmlFor="courier_phone"
+              className="font-medium text-left mb-3 text-gray-500 required-field"
+            >
+              Courier phone
+            </label>
+            <div className="flex flex-col">
+              <InputText
+                type="text"
+                name="courier_phone"
+                placeholder="Enter document courier_phone"
+                value={formikForm.values.courier_phone}
+                onChange={(e) => {
+                  formikForm.setFieldValue("courier_phone", e.target.value);
+                }}
+                className={classNames(
+                  { "p-invalid": isFormFieldInvalid("courier_phone") },
+                  "w-full p-1 ml-3 text-gray-500 outline-none"
+                )}
+              />
+            </div>
+            {getFormErrorMessage("courier_phone")}
+          </div>
+
+          {/* status */}
+          <div className="flex flex-col mb-4">
+            <label
+              htmlFor="status"
+              className="font-medium text-left mb-3 text-gray-500"
+            >
+              Status
+            </label>
+            <div className="flex flex-col">
+              <Dropdown
+                value={
+                  formikForm.values.status
+                    ? new Date(formikForm.values.status)
+                    : null
+                }
+                className={classNames({
+                  "p-invalid": isFormFieldInvalid("status"),
+                })}
+                onChange={(e) => {
+                  formikForm.setFieldValue("status", e.target.value);
+                }}
+                options={createOptionsFromEnum(IDispatchStatus)}
+                optionLabel="label"
+                showClear
+                placeholder="Select a status"
+              />
+            </div>
+            {getFormErrorMessage("status")}
+          </div>
+
+          {/* remarks */}
+          <div className="flex flex-col mb-4">
+            <Accordion activeIndex={0} className="w-full ">
+              <AccordionTab header="Remarks">
+                <Editor
+                  placeholder={"Enter  remarks .."}
+                  value={formikForm.values.remarks}
+                  onTextChange={(e) =>
+                    formikForm.setFieldValue("remarks", e.htmlValue)
+                  }
+                  style={{ height: "320px" }}
+                  modules={{
+                    toolbar: [
+                      [{ header: "1" }, { header: "2" }, { font: [] }],
+                      [{ size: [] }],
+                      ["bold", "italic", "underline", "strike", "blockquote"],
+                      [
+                        { list: "ordered" },
+                        { list: "bullet" },
+                        { indent: "-1" },
+                        { indent: "+1" },
+                      ],
+                      ["link", "image", "video"],
+                      ["clean"],
+                    ],
+                    clipboard: {
+                      // toggle to add extra line breaks when pasting HTML:
+                      matchVisual: false,
+                    },
+                  }}
+                />
+              </AccordionTab>
+            </Accordion>
+
+            {getFormErrorMessage("remarks")}
           </div>
         </div>
 

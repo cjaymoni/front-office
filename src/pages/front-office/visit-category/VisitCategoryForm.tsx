@@ -21,6 +21,8 @@ import {
   getVisitCategoryByIdRequest,
   updateVisitCategoryRequest,
 } from "./vistCategoryApiRequest";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Editor } from "primereact/editor";
 
 const scrollToElement = (ref: any) => {
   if (ref && ref.current) {
@@ -158,7 +160,7 @@ export const VisitCategoryForm = () => {
           </div>
 
           {/* description */}
-          <div className="flex flex-col mb-4">
+          {/* <div className="flex flex-col mb-4">
             <label
               htmlFor="description"
               className="font-medium text-left mb-3 text-gray-500 "
@@ -181,9 +183,41 @@ export const VisitCategoryForm = () => {
               />
             </div>
             {getFormErrorMessage("description")}
-          </div>
+          </div> */}
         </div>
+        <Accordion activeIndex={0}>
+          {/* description*/}
 
+          <AccordionTab header="Description">
+            <Editor
+              placeholder={"Enter description .."}
+              value={formikForm.values.description}
+              onTextChange={(e) =>
+                formikForm.setFieldValue("description", e.htmlValue)
+              }
+              style={{ height: "320px" }}
+              modules={{
+                toolbar: [
+                  [{ header: "1" }, { header: "2" }, { font: [] }],
+                  [{ size: [] }],
+                  ["bold", "italic", "underline", "strike", "blockquote"],
+                  [
+                    { list: "ordered" },
+                    { list: "bullet" },
+                    { indent: "-1" },
+                    { indent: "+1" },
+                  ],
+                  ["link", "image", "video"],
+                  ["clean"],
+                ],
+                clipboard: {
+                  // toggle to add extra line breaks when pasting HTML:
+                  matchVisual: false,
+                },
+              }}
+            />
+          </AccordionTab>
+        </Accordion>
         {/* buttons */}
         <div className="flex  justify-end">
           <Button

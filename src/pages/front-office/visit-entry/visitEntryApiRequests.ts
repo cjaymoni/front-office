@@ -26,7 +26,7 @@ export const addNewVisitEntryRequest = (visitEntryData: any) => {
           timer: 2000,
           showConfirmButton: false,
         }).then(function () {
-          window.location.assign("/front-office/visit-entry");
+          window.location.assign("/visit-entry");
         });
       }
       return response.data;

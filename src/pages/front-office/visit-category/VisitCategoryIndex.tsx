@@ -20,7 +20,20 @@ export const VisitCategoryIndex = () => {
     useState<IVisitCategory>();
   const buttonEl = useRef(null);
 
+  const vistCat = [
+    {
+      id: 1,
+      category: "category 1",
+      description: "description 1",
+    },
+    {
+      id: 2,
+      category: "category 2",
+      description: "description 2",
+    },
+  ];
   useEffect(() => {
+    //setVisitCategoryList(vistCat);
     fetchVisitCategoryRequest().then((response) => {
       response.length > 0
         ? setVisitCategoryList(response)
@@ -108,7 +121,7 @@ export const VisitCategoryIndex = () => {
         <span className="text-4xl text-gray-500 font-semibold">
           Visit Categories
         </span>
-        <Link to="/front-office/visit-category/add">
+        <Link to="/visit-category/add">
           <Button label="Add Visit Category" icon="pi pi-plus" outlined />
         </Link>
       </div>
@@ -116,6 +129,7 @@ export const VisitCategoryIndex = () => {
         columns={columns}
         data={visitCategoryList}
         globalFilterFields={["category", "description"]}
+        exportedFileName="visit-categoriea=s"
       />
     </div>
   );

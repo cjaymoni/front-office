@@ -2,7 +2,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 // const apiUrl = import.meta.env.VITE_API_URL;
-const apiUrl = "http://68.183.68.210:8009/";
+const apiUrl = "https://alaoffice.devhubconcepts.com";
 
 const scrollToTop = () => {
   window.scrollTo({
@@ -14,6 +14,10 @@ const scrollToTop = () => {
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
   timeout: 5000,
+  headers: {
+    "X-CSCAPI-KEY": "eXphRFdFY3FsbVZFVk5UMDZ4cFJLS3JkUXJ4dGx6Zm4yZlNGdjVPWg==",
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 axiosInstance.interceptors.request.use(

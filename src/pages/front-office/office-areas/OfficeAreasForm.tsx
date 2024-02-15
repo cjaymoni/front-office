@@ -16,6 +16,8 @@ import {
   updateOfficeAreasRequest,
 } from "./officeAreasApiRequest";
 import { InputTextarea } from "primereact/inputtextarea";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Editor } from "primereact/editor";
 
 const scrollToElement = (ref: any) => {
   if (ref && ref.current) {
@@ -151,33 +153,40 @@ export const OfficeAreasForm = () => {
             </div>
             {getFormErrorMessage("name")}
           </div>
-          {/* description*/}
-          <div className="flex flex-col mb-4">
-            <label
-              htmlFor="description"
-              className="font-medium text-left mb-3 text-gray-500"
-            >
-              Description
-            </label>
-            <div className="flex flex-col">
-              <InputTextarea
-                rows={3}
-                name="description"
-                placeholder="Enter office area description"
-                value={formikForm.values.description}
-                onChange={(e) => {
-                  formikForm.setFieldValue("description", e.target.value);
-                }}
-                className={classNames(
-                  { "p-invalid": isFormFieldInvalid("description") },
-                  "w-full p-1 ml-3 text-gray-500 outline-none"
-                )}
-              />
-            </div>
-            {getFormErrorMessage("description")}
-          </div>
         </div>
+        <Accordion activeIndex={0}>
+          {/* description*/}
 
+          <AccordionTab header="Description">
+            <Editor
+              placeholder={"Enter description .."}
+              value={formikForm.values.description}
+              onTextChange={(e) =>
+                formikForm.setFieldValue("description", e.htmlValue)
+              }
+              style={{ height: "320px" }}
+              modules={{
+                toolbar: [
+                  [{ header: "1" }, { header: "2" }, { font: [] }],
+                  [{ size: [] }],
+                  ["bold", "italic", "underline", "strike", "blockquote"],
+                  [
+                    { list: "ordered" },
+                    { list: "bullet" },
+                    { indent: "-1" },
+                    { indent: "+1" },
+                  ],
+                  ["link", "image", "video"],
+                  ["clean"],
+                ],
+                clipboard: {
+                  // toggle to add extra line breaks when pasting HTML:
+                  matchVisual: false,
+                },
+              }}
+            />
+          </AccordionTab>
+        </Accordion>
         {/* buttons */}
         <div className="flex  justify-end">
           <Button

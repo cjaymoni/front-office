@@ -23,6 +23,8 @@ import {
 } from "./visitEntryApiRequests";
 import { IStaff, fetchStaffRequest } from "../../staff/staffApiRequests";
 import { AutoComplete } from "primereact/autocomplete";
+import { Accordion, AccordionTab } from "primereact/accordion";
+import { Editor } from "primereact/editor";
 
 const scrollToElement = (ref: any) => {
   if (ref && ref.current) {
@@ -282,32 +284,6 @@ export const VisitEntryForm = () => {
             {getFormErrorMessage("person_to_see")}
           </div>
 
-          {/* visit_purpose */}
-          <div className="flex flex-col mb-4">
-            <label
-              htmlFor="visit_purpose"
-              className="font-medium text-left mb-3 text-gray-500 required-field"
-            >
-              Visit purpose
-            </label>
-            <div className="flex flex-col">
-              <InputText
-                type="text"
-                name="visit_purpose"
-                placeholder="Enter  visit purpose"
-                value={formikForm.values.visit_purpose}
-                onChange={(e) => {
-                  formikForm.setFieldValue("visit_purpose", e.target.value);
-                }}
-                className={classNames(
-                  { "p-invalid": isFormFieldInvalid("visit_purpose") },
-                  "w-full p-1 ml-3 text-gray-500 outline-none"
-                )}
-              />
-            </div>
-            {getFormErrorMessage("visit_purpose")}
-          </div>
-
           {/* visit_date  */}
           <div className="flex flex-col mb-4">
             <label
@@ -336,6 +312,63 @@ export const VisitEntryForm = () => {
               />
             </div>
             {getFormErrorMessage("visit_date")}
+          </div>
+
+          {/* visit_purpose */}
+          <div className="flex flex-col mb-4">
+            <Accordion activeIndex={0} className="w-full ">
+              <AccordionTab header="Visit purpose">
+                <Editor
+                  placeholder={"Enter Visit purpose .."}
+                  value={formikForm.values.visit_purpose}
+                  onTextChange={(e) =>
+                    formikForm.setFieldValue("visit_purpose", e.htmlValue)
+                  }
+                  style={{ height: "320px" }}
+                  modules={{
+                    toolbar: [
+                      [{ header: "1" }, { header: "2" }, { font: [] }],
+                      [{ size: [] }],
+                      ["bold", "italic", "underline", "strike", "blockquote"],
+                      [
+                        { list: "ordered" },
+                        { list: "bullet" },
+                        { indent: "-1" },
+                        { indent: "+1" },
+                      ],
+                      ["link", "image", "video"],
+                      ["clean"],
+                    ],
+                    clipboard: {
+                      // toggle to add extra line breaks when pasting HTML:
+                      matchVisual: false,
+                    },
+                  }}
+                />
+              </AccordionTab>
+            </Accordion>
+            {/* <label
+              htmlFor="visit_purpose"
+              className="font-medium text-left mb-3 text-gray-500 required-field"
+            >
+              Visit purpose
+            </label>
+            <div className="flex flex-col">
+              <InputText
+                type="text"
+                name="visit_purpose"
+                placeholder="Enter  visit purpose"
+                value={formikForm.values.visit_purpose}
+                onChange={(e) => {
+                  formikForm.setFieldValue("visit_purpose", e.target.value);
+                }}
+                className={classNames(
+                  { "p-invalid": isFormFieldInvalid("visit_purpose") },
+                  "w-full p-1 ml-3 text-gray-500 outline-none"
+                )}
+              />
+            </div> */}
+            {getFormErrorMessage("visit_purpose")}
           </div>
         </div>
 

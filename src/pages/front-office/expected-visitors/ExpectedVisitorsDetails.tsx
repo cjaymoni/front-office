@@ -8,9 +8,10 @@ import {
 } from "./expectedVisitorsApiRequest";
 import { Divider } from "primereact/divider";
 import { TabView, TabPanel } from "primereact/tabview";
-import { ActionsCard } from "../../../components/actions-card/ActionsCard";
-import { AttachmentCard } from "../../../components/attachment-card/AttachmentCard";
-import { NotesCard } from "../../../components/notes-card/NotesCard";
+import { ActionsTabComponent } from "../../../components/tab-components/ActionsTabComponent";
+import { NotesTabComponent } from "../../../components/tab-components/NotesTabComponent";
+import { AttachmentsTabComponent } from "../../../components/tab-components/AttachmentsTabComponent";
+import { CommentsTabComponent } from "../../../components/tab-components/CommentsTabComponent";
 
 export const ExpectedVisitorsDetails = () => {
   const navigate = useNavigate();
@@ -40,9 +41,7 @@ export const ExpectedVisitorsDetails = () => {
             className="h-12 "
             style={{ marginRight: "1rem" }}
             onClick={() =>
-              navigate(
-                `/front-office/visit-entry/${expectedVisitorsDetails?.id}/edit`
-              )
+              navigate(`/visit-entry/${expectedVisitorsDetails?.id}/edit`)
             }
           />
           <Button
@@ -59,49 +58,32 @@ export const ExpectedVisitorsDetails = () => {
             <div className="flex text-[#808080] font-medium w-full">
               Visitor Name
             </div>
-            <div className="flex  text-black font-medium">
-              {expectedVisitorsDetails?.visitor_name}
-            </div>
+            <div className="flex  text-black font-medium">John Doe</div>
           </li>
           <li className="flex flex-row items-left py-3 px-2 flex-wrap ">
             <div className="flex w-full text-[#808080] font-medium">
               Visitor Phone
             </div>
-            <div className="flex  text-black font-medium">
-              {expectedVisitorsDetails?.visitor_phone}
-            </div>
+            <div className="flex  text-black font-medium">0293439234</div>
           </li>
-          <li className="flex flex-row items-left py-3 px-2 flex-wrap ">
-            <div className="flex w-full text-[#808080] font-medium">
-              Visitor phone
-            </div>
-            <div className="flex  text-black font-medium">
-              {expectedVisitorsDetails?.visitor_phone}
-            </div>
-          </li>
+
           <li className="flex flex-row items-left py-3 px-2 flex-wrap ">
             <div className="flex w-full text-[#808080] font-medium">
               Visitor email
             </div>
-            <div className="flex  text-black font-medium">
-              {expectedVisitorsDetails?.visitor_email}
-            </div>
+            <div className="flex  text-black font-medium">johndoe@mail.com</div>
           </li>
           <li className="flex flex-row items-left py-3 px-2 flex-wrap ">
             <div className="flex w-full text-[#808080] font-medium">
               Visit purpose
             </div>
-            <div className="flex  text-black font-medium">
-              {expectedVisitorsDetails?.visit_purpose}
-            </div>
+            <div className="flex  text-black font-medium">Meeting </div>
           </li>
           <li className="flex flex-row items-left py-3 px-2 flex-wrap ">
             <div className="flex w-full text-[#808080] font-medium">
               Person to see
             </div>
-            <div className="flex  text-black font-medium">
-              {expectedVisitorsDetails?.person_to_see?.first_name}
-            </div>
+            <div className="flex  text-black font-medium">Felicia Osei</div>
           </li>
         </ul>
       </div>
@@ -117,29 +99,16 @@ export const ExpectedVisitorsDetails = () => {
       <div>
         <TabView>
           <TabPanel header="Actions" leftIcon="pi pi-arrows-alt mr-2">
-            {" "}
-            <div className="w-full  bg-gray-100 border-none p-4">
-              <div className="flex justify-end mb-4">
-                <Button icon="pi pi-plus" label="New" outlined />
-              </div>
-              <ActionsCard />
-            </div>
+            <ActionsTabComponent />
           </TabPanel>
           <TabPanel header="Notes" leftIcon="pi pi-copy mr-2">
-            <div className="w-full  bg-gray-100 border-none p-4">
-              <div className="flex justify-end mb-4">
-                <Button icon="pi pi-plus" label="New" outlined />
-              </div>
-              <NotesCard />
-            </div>
+            <NotesTabComponent />
           </TabPanel>
           <TabPanel header="Attachments" leftIcon="pi pi-file mr-2">
-            <div className="w-full  bg-gray-100 border-none p-4">
-              <div className="flex justify-end mb-4">
-                <Button icon="pi pi-plus" label="New" outlined />
-              </div>
-              <AttachmentCard />
-            </div>
+            <AttachmentsTabComponent />
+          </TabPanel>
+          <TabPanel header="Comments" leftIcon="pi pi-comment mr-2">
+            <CommentsTabComponent />
           </TabPanel>
         </TabView>
       </div>

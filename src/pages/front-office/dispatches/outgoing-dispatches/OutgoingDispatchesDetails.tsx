@@ -8,9 +8,11 @@ import {
 } from "./outgoingDispatchesApiRequests";
 import { Divider } from "primereact/divider";
 import { TabView, TabPanel } from "primereact/tabview";
-import { ActionsCard } from "../../../../components/actions-card/ActionsCard";
-import { AttachmentCard } from "../../../../components/attachment-card/AttachmentCard";
-import { NotesCard } from "../../../../components/notes-card/NotesCard";
+import { ActionsCard } from "../../../../components/cards/actions-card/ActionsCard";
+import { ActionsTabComponent } from "../../../../components/tab-components/ActionsTabComponent";
+import { NotesTabComponent } from "../../../../components/tab-components/NotesTabComponent";
+import { AttachmentsTabComponent } from "../../../../components/tab-components/AttachmentsTabComponent";
+import { CommentsTabComponent } from "../../../../components/tab-components/CommentsTabComponent";
 
 export const OutgoingDispatchDetails = () => {
   const navigate = useNavigate();
@@ -40,9 +42,7 @@ export const OutgoingDispatchDetails = () => {
             className="h-12 "
             style={{ marginRight: "1rem" }}
             onClick={() =>
-              navigate(
-                `/front-office/outgoing-dispatch/${outgoingDispatchDetails?.id}/edit`
-              )
+              navigate(`/outgoing-dispatch/${outgoingDispatchDetails?.id}/edit`)
             }
           />
           <Button
@@ -107,29 +107,16 @@ export const OutgoingDispatchDetails = () => {
       <div>
         <TabView>
           <TabPanel header="Actions" leftIcon="pi pi-arrows-alt mr-2">
-            {" "}
-            <div className="w-full  bg-gray-100 border-none p-4">
-              <div className="flex justify-end mb-4">
-                <Button icon="pi pi-plus" label="New" outlined />
-              </div>
-              <ActionsCard />
-            </div>
+            <ActionsTabComponent />
           </TabPanel>
           <TabPanel header="Notes" leftIcon="pi pi-copy mr-2">
-            <div className="w-full  bg-gray-100 border-none p-4">
-              <div className="flex justify-end mb-4">
-                <Button icon="pi pi-plus" label="New" outlined />
-              </div>
-              <NotesCard />
-            </div>
+            <NotesTabComponent />
           </TabPanel>
           <TabPanel header="Attachments" leftIcon="pi pi-file mr-2">
-            <div className="w-full  bg-gray-100 border-none p-4">
-              <div className="flex justify-end mb-4">
-                <Button icon="pi pi-plus" label="New" outlined />
-              </div>
-              <AttachmentCard />
-            </div>
+            <AttachmentsTabComponent />
+          </TabPanel>
+          <TabPanel header="Comments" leftIcon="pi pi-comment mr-2">
+            <CommentsTabComponent />
           </TabPanel>
         </TabView>
       </div>
